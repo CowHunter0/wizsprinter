@@ -177,6 +177,12 @@ class SprintyClient(Client):
         """Simply returns current mana divided by max mana"""
         return await self.stats.current_mana() / await self.stats.max_mana()
 
+    async def print_health_percent(self):
+        print(f"{await self.calc_health_ratio() * 100}%")
+        
+    async def print_mana_percent(self):
+        print(f"{await self.calc_mana_ratio() * 100}%")
+    
     async def needs_health(self, health_percent: int = 20) -> bool:
         return await self.calc_health_ratio() * 100 <= health_percent
 
